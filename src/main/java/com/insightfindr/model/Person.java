@@ -2,27 +2,18 @@ package com.insightfindr.model;
 
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Table(name = "users")
 public class Person {
-
-    public Person() {
-    }
-
-    public Person(String user_id, String email, String password) {
-        this.user_id = user_id;
-        this.email = email;
-        this.password = password;
-    }
 
     @Id
     @Column(name = "user_id", nullable = false, unique = true)

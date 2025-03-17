@@ -1,28 +1,16 @@
 package com.insightfindr.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "favourited_stocks")
 public class Stock {
-
-    public Stock() {
-    }
-
-    public Stock(long id, String ticker, String name, String message, int invested, String date_invested) {
-        this.id = id;
-        this.ticker = ticker;
-        this.name = name;
-        this.message = message;
-        this.invested = invested;
-        this.date_invested = date_invested;
-    }
 
     @Id
     @GeneratedValue
