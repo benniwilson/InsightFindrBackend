@@ -1,9 +1,6 @@
 package com.insightfindr.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +9,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
+@Table(name = "favourited_stocks")
 public class Stock {
 
     public Stock() {
