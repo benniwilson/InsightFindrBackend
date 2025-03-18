@@ -1,5 +1,6 @@
 package com.insightfindr.service;
 
+import com.insightfindr.exception.PersonNotFoundException;
 import com.insightfindr.model.Person;
 import com.insightfindr.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +20,35 @@ public class PersonServiceImpl implements PersonService {
         if (person.isPresent()){
             return person.get();
         }else {
-            throw new Exception(String.format("No Album with id: %s, was found in the system", id));
+            throw new PersonNotFoundException(String.format("No user with id: %s, was found in the system", id));
         }
     }
 
     @Override
     public Person postPerson(Person person) {
-        return null;
+        return repository.save(person);
     }
 
     @Override
     public Person putPerson(Person person, String id) {
-        return null;
+        Optional<Person> optionalPerson = repository.findById(id);
+        if (optionalPerson.isPresent()){
+            person.setUser_id(id);
+            return repository.save(person);
+        }else{
+            throw new PersonNotFoundException(String.format("No user with id: %s, was found in the system", id));
+        }
     }
 
     @Override
     public Person deletePerson(String id) {
-        return null;
+        Optional<Person> person = repository.findById(id);
+        if (person.isPresent()){
+            Person deletedPerson = person.get();
+            repository.deleteById(id);
+            return deletedPerson;
+        }else {
+            throw new PersonNotFoundException(String.format("No user with id: %s, was found in the system", id));
+        }
     }
 }
