@@ -27,7 +27,7 @@ public class Stock {
     private String message;
 
     @Column(name = "amount_invested")
-    private int invested;
+    private double invested;
 
     @Column(name = "date_invested")
     private String date_invested;
